@@ -43,9 +43,6 @@ const init = async () => {
     console.log("🧪 Test Query Result:", test);
 
     // 2. Import your models AFTER connection
-    await import("./Database/userData.mjs"); // ensure schema is registered
-    await import("./Database/passwordReset.mjs");
-
     // 3. Import your routes AFTER models are ready
     const { default: middleMan } = await import("./middleMan.mjs");
     app.use("/gateway", middleMan);
