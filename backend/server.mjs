@@ -5,7 +5,7 @@ import express from "express";
 import cors from "cors";
 import cookieParser from "cookie-parser";
 import mongoose from "mongoose";
-import { blockHeadlessBrowser } from "./middleWare/headlessBrowser.js";
+import { blockHeadlessBrowser } from "./middleWare/headlessBrowser.mjs";
 import rateLimit from "express-rate-limit";
 
 const app = express();
