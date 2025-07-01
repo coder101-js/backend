@@ -42,10 +42,9 @@ app.use(cookieParser());
     await mongoose.connect(process.env.MONGO_URI, {
       dbName: "userData",
     });
-
     console.log("✅ MongoDB connected");
 
-    // ⬇️ Delay this until AFTER mongoose is ready!
+    // ✅ Import AFTER connection to avoid buffering issues
     const { default: middleMan } = await import("./middleMan.mjs");
     app.use("/gateway", middleMan);
 
@@ -57,3 +56,4 @@ app.use(cookieParser());
     process.exit(1);
   }
 })();
+
