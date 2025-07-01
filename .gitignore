@@ -1,0 +1,26 @@
+# Node stuff
+node_modules/
+npm-debug.log
+yarn-debug.log
+yarn-error.log
+
+# Env secrets
+.env
+
+# OS junk
+.DS_Store
+Thumbs.db
+
+# Logs
+logs/
+*.log
+
+# VS Code or IDE stuff
+.vscode/
+.idea/
+
+# Build output (if any)
+dist/
+build/
+.history
+.vscode
