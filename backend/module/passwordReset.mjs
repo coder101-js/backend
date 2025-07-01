@@ -20,13 +20,6 @@ export const sendResetPassword = async (req, res) => {
       return res.status(400).send({ err: "Email is required" });
     }
 
-    console.log("📡 ReadyState before query:", mongoose.connection.readyState);
-    console.log("📦 DB Name:", mongoose.connection.name);
-    console.log(
-      "📁 Collections:",
-      await mongoose.connection.db.listCollections().toArray()
-    );
-
     const user = await User.findOne({ email });
 
     if (!user) {
