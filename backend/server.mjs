@@ -4,7 +4,7 @@ dotenv.config();
 import express from "express";
 import cors from "cors";
 import cookieParser from "cookie-parser";
-import connectDB from "../Database/db.js";
+import connectDB from "../Database/db.mjs";
 import rateLimit from "express-rate-limit";
 import { blockHeadlessBrowser } from "./middleWare/headlessBrowser.mjs";
 
