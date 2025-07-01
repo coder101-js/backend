@@ -15,21 +15,23 @@ const port = process.env.PORT || 3000;
 // CORS & middlewares
 app.use(
   cors({
-    origin: [
-      "https://api.buttnetworks.com",
-      "https://buttnetworks.com",
-    ],
+    origin: ["https://api.buttnetworks.com", "https://buttnetworks.com"],
     credentials: true,
   })
 );
-app.use(rateLimit({
-  windowMs: 1000,
-  max: 10,
-  message: "Too many requests - chill out 🧊",
-}));
+app.use(
+  rateLimit({
+    windowMs: 1000,
+    max: 10,
+    message: "Too many requests - chill out 🧊",
+  })
+);
 app.use(blockHeadlessBrowser);
 app.use(express.json());
 app.use(cookieParser());
+// ⬇️ Import your router
+const { default: middleMan } = await import("./middleMan.mjs");
+app.use("/gateway", middleMan); // ⬅️ This handles all /gateway requests
 
 
 (async () => {
@@ -37,7 +39,7 @@ app.use(cookieParser());
     // 1. Connect to DB
     await mongoose.connect(process.env.MONGO_URI);
     console.log("✅ MongoDB connected");
-
+    
     // 2. Import model AFTER connecting
     const { default: User } = await import("../Database/userData.mjs");
 
@@ -50,7 +52,7 @@ app.use(cookieParser());
         res.status(500).json({ err: err.message });
       }
     });
-
+    
     // 4. Start Server
     app.listen(port, () => {
       console.log(`🚀 App listening at http://localhost:${port}`);
