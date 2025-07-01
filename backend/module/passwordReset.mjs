@@ -103,7 +103,7 @@ export const changeUserPassword = async (req, res) => {
       return res.status(404).send({ err: "User not found" });
     }
 
-    const samePass = await import("bcrypt").then(bc =>
+    const samePass = await import("bcrypt").then((bc) =>
       bc.compare(newPassword, user.password)
     );
     if (samePass) {
