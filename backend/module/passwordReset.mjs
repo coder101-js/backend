@@ -9,7 +9,6 @@ import {
 } from "./jwt.mjs";
 import { sendPasswordResetConfirmation } from "./mail.mjs";
 import { hash } from "./hasing.mjs";
-import mongoose from "mongoose";
 
 export const sendResetPassword = async (req, res) => {
 
