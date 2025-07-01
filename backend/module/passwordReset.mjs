@@ -14,6 +14,10 @@ export const sendResetPassword = async (req, res) => {
   try {
     console.log("Mongoose readyState:", mongoose.connection.readyState);
     console.log("User model:", User);
+    console.log("✅ Mongoose connected:", mongoose.connection.readyState); // should be 1
+    console.log("📦 DB Name:", mongoose.connection.name); // should be userData
+    console.log("🔍 Looking for:", email);
+
     const { email } = req.body;
     if (!email) {
       return res.status(400).send({ err: "Email is required" });

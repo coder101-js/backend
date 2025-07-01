@@ -16,8 +16,6 @@ const port = process.env.PORT || 3000;
 app.use(
   cors({
     origin: [
-      "http://localhost:5001", // dev
-      "http://localhost:5000", // dev
       "https://api.buttnetworks.com", // API subdomain
       "https://buttnetworks.com", // main frontend site
     ],
@@ -41,7 +39,6 @@ app.use(cookieParser());
 
 (async () => {
   try {
-    console.log("🌐 MONGO_URI from env:", process.env.MONGO_URI);
     await mongoose.connect(process.env.MONGO_URI);
     console.log("✅ MongoDB connected");
 
