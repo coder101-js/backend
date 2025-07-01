@@ -18,7 +18,7 @@ const signupLimiter = rateLimit({
   standardHeaders: "draft-8",
   handler: (req, res) => {
     return res.status(429).json({
-      error: "Too many signup attempts — please wait ⏳",
+      err: "Too many signup attempts — please wait ⏳",
     });
   },
 });
@@ -47,7 +47,7 @@ export const signup = async (req, res) => {
       const userExist = await User.findOne({ email });
       if (userExist) {
         return res.status(409).json({
-          error: "User already exists. Please log in or reset your password.",
+          err: "User already exists. Please log in or reset your password.",
         });
       }
 
