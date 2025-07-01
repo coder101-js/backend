@@ -5,7 +5,7 @@ dotenv.config();
 import express from "express";
 import cors from "cors";
 import cookieParser from "cookie-parser";
-import mongoose from "mongoose";
+import connectDB from "./Database/db.js"; // 👈 new db file
 import rateLimit from "express-rate-limit";
 import { blockHeadlessBrowser } from "./middleWare/headlessBrowser.mjs";
 
@@ -33,32 +33,26 @@ app.use(cookieParser());
 const { default: middleMan } = await import("./middleMan.mjs");
 app.use("/gateway", middleMan); // ⬅️ This handles all /gateway requests
 
-
 (async () => {
   try {
-    // 1. Connect to DB
-    await mongoose.connect(process.env.MONGO_URI);
-    console.log("✅ MongoDB connected");
-    
-    // 2. Import model AFTER connecting
-    const { default: User } = await import("../Database/userData.mjs");
+    await connectDB(); // ⬅️ connect once
 
-    // 3. Test route
+    // models will now use shared instance
+    const { default: User } = await import("./Database/userData.mjs");
+
+    // test route
     app.get("/test", async (req, res) => {
-      try {
-        const user = await User.findOne(); // Get 1st user
-        res.json(user || { msg: "No user found" });
-      } catch (err) {
-        res.status(500).json({ err: err.message });
-      }
+      const user = await User.findOne();
+      res.json(user || { msg: "No users found" });
     });
-    
-    // 4. Start Server
+
+    const { default: middleMan } = await import("./middleMan.mjs");
+    app.use("/gateway", middleMan);
+
     app.listen(port, () => {
-      console.log(`🚀 App listening at http://localhost:${port}`);
+      console.log(`🚀 Server live at http://localhost:${port}`);
     });
   } catch (err) {
-    console.error("❌ Mongo connection error:", err.message);
-    process.exit(1);
+    console.error("❌ Connection Error:", err.message);
   }
 })();
