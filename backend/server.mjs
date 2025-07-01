@@ -14,7 +14,8 @@ import middleMan from "./middleMan.mjs";
 app.use(
   cors({
     origin: [
-      "http://localhost:3000", // dev
+      "http://localhost:5001", // dev
+      "http://localhost:5000", // dev
       "https://api.buttnetworks.com", // API subdomain
       "https://buttnetworks.com", // main frontend site
     ],
@@ -22,6 +23,18 @@ app.use(
   })
 );
 
+(async () => {
+  try {
+    await mongoose.connect(process.env.MONGO_URI);
+    console.log(" MongoDB connected"); //turn on server after mongoDB get connected!
+    app.listen(port, () => {
+      console.log(`App is listening on http://localhost:${port}`);
+    });
+  } catch (err) {
+    console.error(" Mongo connection error:", err.message);
+    process.exit(1);
+  }
+})();
 const burstLimiter = rateLimit({
   windowMs: 1000, // 1 second
   max: 10, // Max 10 reqs per second
@@ -38,16 +51,3 @@ app.use(cookieParser());
 
 const port = process.env.PORT || 3000;
 app.use("/gateway", middleMan); // ✅Using router correctly now
-
-(async () => {
-  try {
-    await mongoose.connect(process.env.MONGO_URI);
-    console.log(" MongoDB connected"); //turn on server after mongoDB get connected!
-    app.listen(port, () => {
-      console.log(`App is listening on http://localhost:${port}`);
-    });
-  } catch (err) {
-    console.error(" Mongo connection error:", err.message);
-    process.exit(1);
-  }
-})();
