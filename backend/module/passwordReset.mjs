@@ -1,5 +1,12 @@
 import { emailType } from "./mail.mjs";
-import User from "../../Database/userData.mjs";
+let User;
+try {
+  const module = await import("../../Database/userData.mjs");
+  User = module.default;
+} catch (err) {
+  console.error("❌ Failed to import User model:", err);
+}
+
 import reset from "../../Database/passwordReset.mjs";
 import { decodeTokenSafely } from "./jwt.mjs";
 import mongoose from "mongoose";
@@ -21,6 +28,8 @@ export const sendResetPassword = async (req, res) => {
       "📁 Collections:",
       await mongoose.connection.db.listCollections().toArray()
     );
+    console.log("📡 ReadyState before query:", mongoose.connection.readyState);
+
 
     const user = await User.findOne({ email });
 
