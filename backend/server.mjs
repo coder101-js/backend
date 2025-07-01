@@ -39,7 +39,10 @@ app.use(cookieParser());
 
 (async () => {
   try {
-    await mongoose.connect(process.env.MONGO_URI);
+    await mongoose.connect(process.env.MONGO_URI, {
+      dbName: "userData",
+    });
+
     console.log("✅ MongoDB connected");
 
     // ⬇️ Delay this until AFTER mongoose is ready!
