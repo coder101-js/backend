@@ -1,13 +1,36 @@
+// server.mjs
 import dotenv from "dotenv";
 dotenv.config();
 
 import express from "express";
+import cors from "cors";
+import cookieParser from "cookie-parser";
 import mongoose from "mongoose";
+import rateLimit from "express-rate-limit";
+import { blockHeadlessBrowser } from "./middleWare/headlessBrowser.mjs";
 
 const app = express();
-app.use(express.json());
-
 const port = process.env.PORT || 3000;
+
+// CORS & middlewares
+app.use(
+  cors({
+    origin: [
+      "https://api.buttnetworks.com",
+      "https://buttnetworks.com",
+    ],
+    credentials: true,
+  })
+);
+app.use(rateLimit({
+  windowMs: 1000,
+  max: 10,
+  message: "Too many requests - chill out 🧊",
+}));
+app.use(blockHeadlessBrowser);
+app.use(express.json());
+app.use(cookieParser());
+
 
 (async () => {
   try {
