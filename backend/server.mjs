@@ -27,7 +27,7 @@ app.use(cookieParser());
   try {
     await connectDB(); // 🔌 Connect once
 
-    const { default: User } = await import("./Database/userData.mjs");
+    const { default: User } = await import("../Database/userData.mjs");
 
     app.get("/test", async (req, res) => {
       const user = await User.findOne();
