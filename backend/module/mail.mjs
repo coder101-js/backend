@@ -33,9 +33,6 @@ export const emailType = async (type, email, codeOrToken) => {
 };
 
 export const sendPasswordResetEmail = async (email, resetToken) => {
-  console.log("Mongoose readyState:", mongoose.connection.readyState);
-  console.log("User model:", User);
-
   const info = await transporter.sendMail({
     from: `"ButtNetworks" <${process.env.EMAIL_USER}>`,
     to: email,

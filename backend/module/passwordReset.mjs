@@ -11,6 +11,8 @@ import { hash } from "./hasing.mjs";
 
 export const sendResetPassword = async (req, res) => {
   try {
+    console.log("Mongoose readyState:", mongoose.connection.readyState);
+    console.log("User model:", User);
     const { email } = req.body;
     if (!email) {
       return res.status(400).send({ err: "Email is required" });
