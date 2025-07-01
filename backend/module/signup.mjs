@@ -95,7 +95,7 @@ export const signup = async (req, res) => {
       res.status(201).json({
         message: "User registered successfully",
         verify: false,
-        redirectTo: `http://localhost:5500/Account-verification.html?email=${email}`,
+        redirectTo: `https://buttnetworks.com/Account-verification?email=${email}`,
       });
     } catch (err) {
       console.error("❌ Signup error:", err);

@@ -186,7 +186,7 @@ export const verifyOtp = async (req, res) => {
     if (!valid) {
       return res.status(403).json({
         msg: "Invalid token",
-        redirectTo: `http://localhost:5500/index.html`,
+        redirectTo: `https://buttnetworks.com/`,
       });
     }
   } catch (err) {

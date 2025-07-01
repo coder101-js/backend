@@ -65,7 +65,7 @@ export const login = async (req, res) => {
         return res.status(200).json({
           error: "Your account is not Verified",
           verify: false,
-          redirectTo: `http://localhost:5500/Account-verification.html?email=${user.email}`,
+          redirectTo: `https://buttnetworks.com/Account-verification?email=${user.email}`,
         });
       }
       // 🔐 Check password
