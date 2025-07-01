@@ -1,6 +1,6 @@
 import express from "express";
-import { authenticate } from "./module/jwt.js";
-import { middleManController } from "./controller/middleManController.js";
+import { authenticate } from "./module/jwt.mjs";
+import { middleManController } from "./controller/middleManController.mjs";
 const router = express.Router();
 
 router.use(express.json());

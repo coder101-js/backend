@@ -1,6 +1,6 @@
 import "dotenv/config";
 import jwt from "jsonwebtoken";
-import User from "../../Database/userData.js";
+import User from "../../Database/userData.mjs";
 import { jwtDecode } from "jwt-decode";
 const SECRET_JWT_KEY = process.env.JWT_KEY;
 const SECRET_REFRESH_KEY = process.env.REFRESH_KEY;

@@ -10,7 +10,7 @@ import rateLimit from "express-rate-limit";
 
 const app = express();
 
-import middleMan from "./middleMan.js";
+import middleMan from "./middleMan.mjs";
 app.use(
   cors({
     origin: [

@@ -1,12 +1,12 @@
 import rateLimit from "express-rate-limit";
-import { signup } from "../module/signup.js";
-import { login } from "../module/login.js";
-import { verifyOtp, resendOtp } from "../module/mail.js";
+import { signup } from "../module/signup.mjs";
+import { login } from "../module/login.mjs";
+import { verifyOtp, resendOtp } from "../module/mail.mjs";
 import {
   sendResetPassword,
   validateResetRequest,
   changeUserPassword,
-} from "../module/passwordReset.js";
+} from "../module/passwordReset.mjs";
 
 // 🔒 Rate limiters
 const defaultLimiter = rateLimit({

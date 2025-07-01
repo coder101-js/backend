@@ -3,9 +3,12 @@ node_modules/
 npm-debug.log
 yarn-debug.log
 yarn-error.log
+lerna-debug.log*
 
 # Env secrets
 .env
+.env.*
+!.env.example
 
 # OS junk
 .DS_Store
@@ -14,13 +17,73 @@ Thumbs.db
 # Logs
 logs/
 *.log
+report.[0-9]*.[0-9]*.[0-9]*.[0-9]*.json
 
-# VS Code or IDE stuff
+# Runtime data
+pids
+*.pid
+*.seed
+*.pid.lock
+
+# Diagnostic tools & cache
+lib-cov
+coverage
+*.lcov
+.nyc_output
+.grunt
+bower_components
+.lock-wscript
+build/Release
+jspm_packages/
+web_modules/
+
+# IDE & editor junk
 .vscode/
 .idea/
-
-# Build output (if any)
-dist/
-build/
 .history
-.vscode
+.vscode-test
+
+# TypeScript / ESLint / Stylelint cache
+*.tsbuildinfo
+.eslintcache
+.stylelintcache
+
+# REPL / Yarn / NPM cache
+.node_repl_history
+.npm
+.yarn-integrity
+*.tgz
+
+# Parcel / Snowpack / Next.js / Nuxt / Gatsby / Vue / Svelte / Vite / Docusaurus
+.cache/
+.parcel-cache
+.next
+out
+.nuxt
+dist
+.vuepress/dist
+.temp
+.svelte-kit/
+**/.vitepress/dist
+**/.vitepress/cache
+.docusaurus
+
+# Serverless & frameworks
+.serverless/
+.fusebox/
+.dynamodb/
+.firebase/
+.tern-port
+
+# Yarn v3
+.pnp.*
+.yarn/*
+!.yarn/patches
+!.yarn/plugins
+!.yarn/releases
+!.yarn/sdks
+!.yarn/versions
+
+# Vite logs
+vite.config.js.timestamp-*
+vite.config.ts.timestamp-*

@@ -1,8 +1,8 @@
 import nodemailer from "nodemailer";
-import { hashOTP, isValidOTP } from "./hasing.js";
-import Otp from "../../Database/otp.js";
-import User from "../../Database/userData.js";
-import { validateAccountVerificationToken } from "./jwt.js";
+import { hashOTP, isValidOTP } from "./hasing.mjs";
+import Otp from "../../Database/otp.mjs";
+import User from "../../Database/userData.mjs";
+import { validateAccountVerificationToken } from "./jwt.mjs";
 const transporter = nodemailer.createTransport({
   service: "gmail",
   auth: {

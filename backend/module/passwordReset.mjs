@@ -1,13 +1,13 @@
-import { emailType } from "./mail.js";
-import User from "../../Database/userData.js";
-import reset from "../../Database/passwordReset.js";
-import { decodeTokenSafely } from "./jwt.js";
+import { emailType } from "./mail.mjs";
+import User from "../../Database/userData.mjs";
+import reset from "../../Database/passwordReset.mjs";
+import { decodeTokenSafely } from "./jwt.mjs";
 import {
   generatePasswordResetToken,
   validatePasswordResetToken,
-} from "./jwt.js";
-import { sendPasswordResetConfirmation } from "./mail.js";
-import { hash } from "./hasing.js";
+} from "./jwt.mjs";
+import { sendPasswordResetConfirmation } from "./mail.mjs";
+import { hash } from "./hasing.mjs";
 
 export const sendResetPassword = async (req, res) => {
   try {

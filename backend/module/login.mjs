@@ -1,12 +1,12 @@
-import User from "../../Database/userData.js";
+import User from "../../Database/userData.mjs";
 import { compare } from "bcryptjs";
 import {
   generateToken,
   generateRefreshToken,
   generateAccountVerificationToken,
-} from "./jwt.js";
-import { generateOTP, saveVerificationEmailOtp, emailType } from "./mail.js";
-import { validateCaptcha } from "./Captcha.js";
+} from "./jwt.mjs";
+import { generateOTP, saveVerificationEmailOtp, emailType } from "./mail.mjs";
+import { validateCaptcha } from "./Captcha.mjs";
 import rateLimit from "express-rate-limit";
 
 // Inline limiter (per email or fallback to IP)

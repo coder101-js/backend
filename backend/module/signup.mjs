@@ -1,13 +1,13 @@
-import User from "../../Database/userData.js";
+import User from "../../Database/userData.mjs";
 import { hash } from "bcryptjs";
 import {
   generateToken,
   generateRefreshToken,
   generateAccountVerificationToken,
-} from "./jwt.js";
-import { validateCaptcha } from "./Captcha.js";
+} from "./jwt.mjs";
+import { validateCaptcha } from "./Captcha.mjs";
 import rateLimit from "express-rate-limit";
-import { generateOTP, saveVerificationEmailOtp, emailType } from "./mail.js";
+import { generateOTP, saveVerificationEmailOtp, emailType } from "./mail.mjs";
 
 // 💥 Optional: rate limit signup to avoid abuse
 const signupLimiter = rateLimit({
