@@ -74,7 +74,7 @@ export const sendPasswordResetEmail = async (email, resetToken) => {
   });
 };
 
-export const sendPasswordResetConfirmation = async (email) => {
+export const sendPasswordResetConfirmation = async (email,resetToken) => {
   const info = await transporter.sendMail({
     from: `"ButtNetworks" <${process.env.EMAIL_USER}>`,
     to: email,
@@ -100,7 +100,7 @@ export const sendPasswordResetConfirmation = async (email) => {
           <p style="font-size: 0.9rem; color: #777; margin-bottom: 35px;">
             If you didn’t request this change, please contact our support team immediately or reset your password again:
           </p>
-          <a href="${process.env.FRONTEND_URL}/reset-password"
+          <a href="${process.env.FRONTEND_URL}?token=${resetToken}"
              style="
                display: inline-block;
                padding: 14px 28px;

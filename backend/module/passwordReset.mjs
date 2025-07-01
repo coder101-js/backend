@@ -12,7 +12,6 @@ import { hash } from "./hasing.mjs";
 
 export const sendResetPassword = async (req, res) => {
   try {
-    // Dynamically import User *after* mongoose.connect() has run
     const { default: User } = await import("../../Database/userData.mjs");
 
     const { email } = req.body;
@@ -112,7 +111,10 @@ export const changeUserPassword = async (req, res) => {
     );
 
     if (result.modifiedCount === 1) {
-      await sendPasswordResetConfirmation(email);
+      const resetToken = generatePasswordResetToken(user.email);
+      const passwordReset = new reset({ email, resetToken });
+      await passwordReset.save();
+      await sendPasswordResetConfirmation(email,resetToken);
       return res.status(200).send({ msg: "Password was reset successfully" });
     } else {
       return res.status(500).send({ err: "Password update failed" });
