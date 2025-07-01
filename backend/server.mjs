@@ -12,42 +12,39 @@ import { blockHeadlessBrowser } from "./middleWare/headlessBrowser.mjs";
 const app = express();
 const port = process.env.PORT || 3000;
 
-// CORS & security middleware
+// CORS & middlewares
 app.use(
   cors({
-    origin: ["https://api.buttnetworks.com", "https://buttnetworks.com"],
+    origin: [
+      "https://api.buttnetworks.com",
+      "https://buttnetworks.com",
+    ],
     credentials: true,
   })
 );
-app.use(
-  rateLimit({
-    windowMs: 1000,
-    max: 10,
-    message: "Too many requests - chill out 🧊",
-  })
-);
+app.use(rateLimit({
+  windowMs: 1000,
+  max: 10,
+  message: "Too many requests - chill out 🧊",
+}));
 app.use(blockHeadlessBrowser);
 app.use(express.json());
 app.use(cookieParser());
 
-// ✅ Wrap everything in an async init function
-const init = async () => {
+;(async () => {
   try {
-    // 1. Connect to Mongo
+    // 1. Connect to MongoDB (with explicit DB name)
     await mongoose.connect(process.env.MONGO_URI, {
       dbName: "userData",
     });
     console.log("✅ MongoDB connected");
-    const { default: User } = await import("./Database/userData.mjs");
-    const test = await User.findOne();
-    console.log("🧪 Test Query Result:", test);
 
-    // 2. Import your models AFTER connection
-    // 3. Import your routes AFTER models are ready
+    // 2. Now that mongoose is ready, import your routes (and models)
     const { default: middleMan } = await import("./middleMan.mjs");
+    
     app.use("/gateway", middleMan);
 
-    // 4. Start server
+    // 3. Start the server
     app.listen(port, () => {
       console.log(`🚀 App listening at http://localhost:${port}`);
     });
@@ -55,6 +52,4 @@ const init = async () => {
     console.error("❌ Mongo connection error:", err.message);
     process.exit(1);
   }
-};
-
-init(); // 🚀
+})();
