@@ -16,7 +16,7 @@ const port = process.env.PORT || 3000;
     console.log("✅ MongoDB connected");
 
     // 2. Import model AFTER connecting
-    const { default: User } = await import("./Database/userData.mjs");
+    const { default: User } = await import("../Database/userData.mjs");
 
     // 3. Test route
     app.get("/test", async (req, res) => {
