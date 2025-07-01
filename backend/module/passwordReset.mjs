@@ -2,6 +2,7 @@ import { emailType } from "./mail.mjs";
 import User from "../../Database/userData.mjs";
 import reset from "../../Database/passwordReset.mjs";
 import { decodeTokenSafely } from "./jwt.mjs";
+import mongoose from "mongoose";
 import {
   generatePasswordResetToken,
   validatePasswordResetToken,
