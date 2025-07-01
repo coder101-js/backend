@@ -101,7 +101,7 @@ export const changeUserPassword = async (req, res) => {
     if (samePass) {
       return res
         .status(400)
-        .send({ msg: "Your new password can’t be the same as your old one." });
+        .send({ err: "Your new password can’t be the same as your old one." });
     }
 
     const hashedPassword = await hash(newPassword);
