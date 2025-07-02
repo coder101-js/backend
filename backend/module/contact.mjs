@@ -19,9 +19,9 @@ const conactUs = async (req, res) => {
         pass: process.env.EMAIL_PASS,
       },
     });
-
+    const {name, email, phone,message}=data
     const mailOptions = {
-      from: `"${data.name}" <${data.email}>`,
+      from: `"${name}" <${email}>`,
       to: 'op422010@gmail.com',
       subject: "📨 New Contact Form Message",
       html: `
@@ -35,22 +35,22 @@ const conactUs = async (req, res) => {
     <table style="width: 100%; border-collapse: collapse;">
       <tr>
         <td style="padding: 10px 0;"><strong style="color: #93c5fd;">👤 Name:</strong></td>
-        <td style="padding: 10px 0;">${data.name}</td>
+        <td style="padding: 10px 0;">${name}</td>
       </tr>
       <tr>
         <td style="padding: 10px 0;"><strong style="color: #93c5fd;">📧 Email:</strong></td>
-        <td style="padding: 10px 0;"><a href="mailto:${data.email}" style="color: #38bdf8; text-decoration: none;">${email}</a></td>
+        <td style="padding: 10px 0;"><a href="mailto:${email}" style="color: #38bdf8; text-decoration: none;">${email}</a></td>
       </tr>
       <tr>
         <td style="padding: 10px 0;"><strong style="color: #93c5fd;">📱 Phone:</strong></td>
-        <td style="padding: 10px 0;">${data.phone}</td>
+        <td style="padding: 10px 0;">${phone}</td>
       </tr>
     </table>
 
     <div style="margin-top: 30px;">
       <p style="margin-bottom: 8px;"><strong style="color: #93c5fd;">📝 Message:</strong></p>
       <div style="background: #1e293b; padding: 20px; border-radius: 10px; border: 1px solid #334155;">
-        <p style="white-space: pre-line; margin: 0; color: #f3f4f6; font-size: 16px;">${data.message}</p>
+        <p style="white-space: pre-line; margin: 0; color: #f3f4f6; font-size: 16px;">${message}</p>
       </div>
     </div>
 
