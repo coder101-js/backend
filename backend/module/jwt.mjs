@@ -88,6 +88,7 @@ export const authenticate = async (req, res, next) => {
   }
   const token = req.cookies.token;
   const refresh_token = req.cookies.refresh_token;
+  
 
   // Step 1: No access token
   if (!token) {

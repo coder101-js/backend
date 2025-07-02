@@ -97,7 +97,7 @@ export const login = async (req, res) => {
 
       res
         .status(200)
-        .json({ message: "User logged in successfully ✅", verify: true });
+        .json({ message: "User logged in successfully ✅", verify: true ,redirectTo:'https://buttnetworks.com/home'});
     } catch (err) {
       console.error("💥 Login error:", err);
       return res.status(500).send({ err: "Server error — try again later" });

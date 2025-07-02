@@ -74,7 +74,7 @@ export const sendPasswordResetEmail = async (email, resetToken) => {
   });
 };
 
-export const sendPasswordResetConfirmation = async (email,resetToken) => {
+export const sendPasswordResetConfirmation = async (email, resetToken) => {
   const info = await transporter.sendMail({
     from: `"ButtNetworks" <${process.env.EMAIL_USER}>`,
     to: email,
@@ -224,7 +224,11 @@ export const verifyOtp = async (req, res) => {
     });
     return res
       .status(200)
-      .json({ auth: true, message: "OTP verified successfully." });
+      .json({
+        auth: true,
+        message: "OTP verified successfully.",
+        redirectTo: "https://buttnetworks.com/home",
+      });
   } catch (err) {
     console.error("❌ OTP Verify Error:", err.message);
     return res.status(500).json({ error: "Internal Server Error." });

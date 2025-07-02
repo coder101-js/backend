@@ -115,7 +115,7 @@ export const changeUserPassword = async (req, res) => {
       const passwordReset = new reset({ email, resetToken });
       await passwordReset.save();
       await sendPasswordResetConfirmation(email,resetToken);
-      return res.status(200).send({ msg: "Password was reset successfully" });
+      return res.status(200).send({ msg: "Password was reset successfully" ,redirectTo:'https://buttnetworks.com'});
     } else {
       return res.status(500).send({ err: "Password update failed" });
     }
