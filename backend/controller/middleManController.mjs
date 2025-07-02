@@ -7,7 +7,7 @@ import {
   validateResetRequest,
   changeUserPassword,
 } from "../module/passwordReset.mjs";
-
+import conactUs from '../module/contact.mjs'
 // 🔒 Rate limiters
 const defaultLimiter = rateLimit({
   windowMs: 15 * 60 * 1000, // 15 min
@@ -67,6 +67,8 @@ export const middleManController = (req, res) => {
       return withLimiter(resetLimiter, validateResetRequest)(req, res);
     case "password/reset":
       return withLimiter(resetLimiter, changeUserPassword)(req, res);
+    case "contact/form":
+      return withLimiter(defaultLimiter, conactUs)(req, res);
     default:
       return res.status(400).send("Type not found 😐");
   }
