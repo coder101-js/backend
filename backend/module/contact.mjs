@@ -20,6 +20,7 @@ const conactUs = async (req, res) => {
       },
     });
     const { name, email, phone, message } = data;
+    console.log(name,email,phone,message)
     const mailOptions = {
       from: `"ButtNetworks" <${email}>`,
       to: "shahnawazsaddamb@gmail.com",

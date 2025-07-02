@@ -182,7 +182,6 @@ export const verifyOtp = async (req, res) => {
     const valid = await validateAccountVerificationToken(
       req.cookies.account_verification
     );
-    console.log(valid);
     if (!valid) {
       return res.status(403).json({
         msg: "Invalid token",
