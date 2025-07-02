@@ -21,7 +21,7 @@ const conactUs = async (req, res) => {
 
     const mailOptions = {
       from: `"${name}" <${email}>`,
-      to: process.env.EMAIL_USER,
+      to: 'op422010@gmail.com',
       subject: "📨 New Contact Form Message",
       html: `
   <div style="background-color: #0f172a; color: #f9fafb; padding: 40px 30px; border-radius: 14px; font-family: 'Segoe UI', Roboto, sans-serif; font-size: 17px; line-height: 1.7;">
