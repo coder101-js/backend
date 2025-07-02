@@ -82,6 +82,7 @@ export const authenticate = async (req, res, next) => {
     "password/reset/mail",
     "password/reset/valid/check",
     "password/reset",
+    "contact/form",
   ];
   if (openTypes.includes(req.body?.type)) {
     return next();
