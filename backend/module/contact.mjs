@@ -6,7 +6,7 @@ const router = express.Router();
 // ✨ POST handler with full try/catch block
 const conactUs = async (req, res) => {
   try {
-    const { data} = req.body;
+    const { data } = req.body;
 
     // // Save to DB
     // const useDoc = new UserContact({ name, email, tel, message });
@@ -19,10 +19,10 @@ const conactUs = async (req, res) => {
         pass: process.env.EMAIL_PASS,
       },
     });
-    const {name, email, phone,message}=data
+    const { name, email, phone, message } = data;
     const mailOptions = {
-      from: `"${name}" <${email}>`,
-      to: 'buttnetworks@gmail.com',
+      from: `"ButtNetworks" <${email}>`,
+      to: "shahnawazsaddamb@gmail.com",
       subject: "📨 New Contact Form Message",
       html: `
   <div style="background-color: #0f172a; color: #f9fafb; padding: 40px 30px; border-radius: 14px; font-family: 'Segoe UI', Roboto, sans-serif; font-size: 17px; line-height: 1.7;">
@@ -71,4 +71,4 @@ const conactUs = async (req, res) => {
   }
 };
 
-export default conactUs
+export default conactUs;
