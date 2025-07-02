@@ -6,7 +6,8 @@ const router = express.Router();
 // ✨ POST handler with full try/catch block
 const conactUs = async (req, res) => {
   try {
-    const { name, email, message, tel } = req.body;
+    const { data} = req.body;
+
     // // Save to DB
     // const useDoc = new UserContact({ name, email, tel, message });
     // await useDoc.save(); // ✅ Mongoose ready because we wait until `.then()` before starting the server
@@ -20,7 +21,7 @@ const conactUs = async (req, res) => {
     });
 
     const mailOptions = {
-      from: `"${name}" <${email}>`,
+      from: `"${data.name}" <${data.email}>`,
       to: 'op422010@gmail.com',
       subject: "📨 New Contact Form Message",
       html: `
@@ -34,27 +35,27 @@ const conactUs = async (req, res) => {
     <table style="width: 100%; border-collapse: collapse;">
       <tr>
         <td style="padding: 10px 0;"><strong style="color: #93c5fd;">👤 Name:</strong></td>
-        <td style="padding: 10px 0;">${name}</td>
+        <td style="padding: 10px 0;">${data.name}</td>
       </tr>
       <tr>
         <td style="padding: 10px 0;"><strong style="color: #93c5fd;">📧 Email:</strong></td>
-        <td style="padding: 10px 0;"><a href="mailto:${email}" style="color: #38bdf8; text-decoration: none;">${email}</a></td>
+        <td style="padding: 10px 0;"><a href="mailto:${data.email}" style="color: #38bdf8; text-decoration: none;">${email}</a></td>
       </tr>
       <tr>
         <td style="padding: 10px 0;"><strong style="color: #93c5fd;">📱 Phone:</strong></td>
-        <td style="padding: 10px 0;">${tel}</td>
+        <td style="padding: 10px 0;">${data.phone}</td>
       </tr>
     </table>
 
     <div style="margin-top: 30px;">
       <p style="margin-bottom: 8px;"><strong style="color: #93c5fd;">📝 Message:</strong></p>
       <div style="background: #1e293b; padding: 20px; border-radius: 10px; border: 1px solid #334155;">
-        <p style="white-space: pre-line; margin: 0; color: #f3f4f6; font-size: 16px;">${message}</p>
+        <p style="white-space: pre-line; margin: 0; color: #f3f4f6; font-size: 16px;">${data.message}</p>
       </div>
     </div>
 
     <div style="margin-top: 40px; border-top: 1px solid #1e293b; padding-top: 20px; font-size: 13px; color: #64748b;">
-      🔒 This message was sent automatically from <strong style="color: #facc15;">Wahb’s Secure Contact System</strong>. Please do not reply to this email.
+      🔒 This message was sent automatically from <strong style="color: #facc15;">Wahb’s Secure Contact System</strong>
     </div>
 
   </div>
