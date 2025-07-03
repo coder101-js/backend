@@ -1,5 +1,6 @@
 import express from "express";
 import nodemailer from "nodemailer";
+import Contact from '../../Database/contact.mjs'
 
 const router = express.Router();
 
@@ -7,10 +8,9 @@ const router = express.Router();
 const conactUs = async (req, res) => {
   try {
     const { data } = req.body;
-
-    // // Save to DB
-    // const useDoc = new UserContact({ name, email, tel, message });
-    // await useDoc.save(); // ✅ Mongoose ready because we wait until `.then()` before starting the server
+    // Save to DB
+    const Doc = new Contact({ name, email, tel, message });
+    await Doc.save(); // ✅ Mongoose ready because we wait until `.then()` before starting the server
     // Send email
     const transporter = nodemailer.createTransport({
       service: "gmail",
@@ -67,6 +67,7 @@ const conactUs = async (req, res) => {
 
     res.status(200).json({ message: "✅ Email sent + data saved!" });
   } catch (err) {
+    console.log(err)
     console.error("❌ Error in POST /:", err);
     res.status(500).json({ message: "Something went wrong 💥" });
   }
