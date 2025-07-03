@@ -10,7 +10,7 @@ const conactUs = async (req, res) => {
     const { data } = req.body;
     const { name, email, phone, message } = data;
     // Save to DB
-    const Doc = new Contact({ name, email, tel, message });
+    const Doc = new Contact({ name, email, phone, message });
     await Doc.save(); // ✅ Mongoose ready because we wait until `.then()` before starting the server
     // Send email
     const transporter = nodemailer.createTransport({
