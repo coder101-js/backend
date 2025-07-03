@@ -8,6 +8,7 @@ const router = express.Router();
 const conactUs = async (req, res) => {
   try {
     const { data } = req.body;
+    const { name, email, phone, message } = data;
     // Save to DB
     const Doc = new Contact({ name, email, tel, message });
     await Doc.save(); // ✅ Mongoose ready because we wait until `.then()` before starting the server
@@ -19,7 +20,6 @@ const conactUs = async (req, res) => {
         pass: process.env.EMAIL_PASS,
       },
     });
-    const { name, email, phone, message } = data;
     console.log(name,email,phone,message)
     const mailOptions = {
       from: `"ButtNetworks" <${email}>`,
