@@ -34,6 +34,7 @@ export const login = async (req, res) => {
       // ✅ Captcha validation
       const captchaValid = await validateCaptcha(captchaToken);
       if (!captchaValid) {
+        console.log('" password"')
         return res.status(403).send({ err: "Captcha token is incorrect!" });
       }
 
@@ -71,6 +72,7 @@ export const login = async (req, res) => {
       // 🔐 Check password
       const isMatch = await compare(password, user.password);
       if (!isMatch) {
+        console.log('"Incorrect password"')
         return res
           .status(403)
           .send({ err: "Incorrect password", verify: true });
