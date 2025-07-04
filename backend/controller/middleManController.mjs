@@ -2,6 +2,7 @@ import rateLimit from "express-rate-limit";
 import { signup } from "../module/signup.mjs";
 import { login } from "../module/login.mjs";
 import { verifyOtp, resendOtp } from "../module/mail.mjs";
+import { sendData } from "../module/sendContact.mjs";
 import {
   sendResetPassword,
   validateResetRequest,
@@ -11,7 +12,7 @@ import conactUs from '../module/contact.mjs'
 // 🔒 Rate limiters
 const defaultLimiter = rateLimit({
   windowMs: 15 * 60 * 1000, // 15 min
-  max: 100,
+  max: 90,
   message: "Too many Request",
   legacyHeaders: false,
 });
@@ -69,6 +70,8 @@ export const middleManController = (req, res) => {
       return withLimiter(resetLimiter, changeUserPassword)(req, res);
     case "contact/form":
       return withLimiter(defaultLimiter, conactUs)(req, res);
+    case "admin/contact":
+      return withLimiter(defaultLimiter, sendData)(req, res);
     default:
       return res.status(400).send("Type not found 😐");
   }
