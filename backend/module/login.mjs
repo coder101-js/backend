@@ -55,7 +55,7 @@ export const login = async (req, res) => {
           generateAccountVerificationToken(email);
         res.cookie("account_verification", accountVerificationToken, {
           httpOnly: true,
-          secure: false,
+          secure: true,
           sameSite: "lax",
           maxAge: 60 * 60 * 1000,
         });
@@ -85,14 +85,14 @@ export const login = async (req, res) => {
       // 🍪 Set tokens in cookies
       res.cookie("access_token", accessToken, {
         httpOnly: true,
-        secure: false,
+        secure: true,
         sameSite: "Lax",
         maxAge: 60 * 60 * 1000,
       });
 
       res.cookie("refresh_token", refreshToken, {
         httpOnly: true,
-        secure: false,
+        secure: true,
         sameSite: "Lax",
         maxAge: 30 * 24 * 60 * 60 * 1000,
       });

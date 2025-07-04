@@ -72,20 +72,20 @@ export const signup = async (req, res) => {
       // 🍪 Set auth cookies
       res.cookie("access_token", accessToken, {
         httpOnly: true,
-        secure: false,
+        secure: true,
         sameSite: "lax",
         maxAge: 60 * 60 * 1000, // 1h
       });
 
       res.cookie("refresh_token", refreshToken, {
         httpOnly: true,
-        secure: false,
+        secure: true,
         sameSite: "lax",
         maxAge: 30 * 24 * 60 * 60 * 1000, // 30d
       });
       res.cookie("account_verification", accountVerificationToken, {
         httpOnly: true,
-        secure: false,
+        secure: true,
         sameSite: "lax",
         maxAge: 60 * 60 * 1000,
       });
