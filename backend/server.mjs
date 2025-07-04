@@ -23,7 +23,7 @@ app.use(
   })
 );
 app.use(rateLimit({ windowMs: 1000, max: 10 }));
-app.use(blockHeadlessBrowser);
+// app.use(blockHeadlessBrowser);
 app.use(express.json());
 app.use(cookieParser());
 
