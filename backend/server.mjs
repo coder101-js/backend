@@ -14,7 +14,11 @@ const port = process.env.PORT || 3000;
 // Middleware
 app.use(
   cors({
-    origin: ["https://api.buttnetworks.com", "https://buttnetworks.com"],
+    origin: [
+      "https://api.buttnetworks.com",
+      "https://buttnetworks.com",
+      "https://admin.buttnetworks.com",
+    ],
     credentials: true,
   })
 );

@@ -1,5 +1,5 @@
 // import jwt from 'jsonwebtoken'
-import Contact from '../../Database/contact.mjs'
+import {Contact} from '../../Database/contact.mjs'
 
 export const sendData = async (req, res) => {
   try {
